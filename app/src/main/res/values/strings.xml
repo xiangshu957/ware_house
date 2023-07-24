@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PdaScan</string>
+
+
+    <string name="home_menu0">收货清点</string>
+    <string name="home_menu1">上架扫描</string>
+    <string name="home_menu2">拣货下架</string>
+    <string name="home_menu3">拣货复核</string>
+
+</resources>

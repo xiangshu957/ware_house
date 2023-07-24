@@ -1,0 +1,77 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.xxx.lib_open_resourse'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    api 'androidx.core:core-ktx:1.8.0'
+    api 'androidx.appcompat:appcompat:1.4.1'
+    api 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //okhttp、retrofit、rxjava
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    api 'io.reactivex.rxjava2:rxjava:2.1.7'
+
+    //解决RxJava内存泄漏，但在联网请求的时候使用了liveData，其实已经解决了。观察事件不能取消。
+    //同时在单独使用rxJava的时候还是要用。比如在启动页，还未去主页面，手动点击返回键的时候有效
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //选择器
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+
+    //万能适配器
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    //权限框架(AndPermission)
+    api 'com.yanzhenjie:permission:2.0.3'
+
+    //沉浸式状态栏
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    //加载图片
+    api 'com.github.bumptech.glide:glide:4.11.0'
+
+    //条码扫描
+    api 'com.journeyapps:zxing-android-embedded:3.6.0'
+    api 'com.google.zxing:core:3.3.2'
+
+    //Room的依赖引用
+    api 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+
+}

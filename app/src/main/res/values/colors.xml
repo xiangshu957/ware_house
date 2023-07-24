@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#71F304</color>
+    <color name="purple">#B304F3</color>
+    <color name="gray">#717171</color>
+
+    <color name="toast_text_color">#ffffff</color>
+    <color name="toast_background_color">#817F7F</color>
+    <color name="theme_color">#007DC3</color>
+    <color name="submit_color">#1862F6</color>
+    <color name="transparent">#00EEEEEE</color>
+    <color name="login_btn_stroke_color">#C0C0C0</color>
+    <color name="login_btn_background_color">#FF9800</color>
+    <color name="login_btn_text_color">#323131</color>
+    <color name="item_type_color">#F47E23</color>
+    <color name="popup_background">#EFEAEA</color>
+    <color name="redDark">#EB0707</color>
+    <color name="receive_goods_odd_number">#D5E9F8</color>
+
+    <color name="red">#EC5757</color>
+
+    <color name="blue">#3385ff</color>
+
+    <color name="home1">#008080</color>
+    <color name="home2">#BDAADD</color>
+    <color name="home3">#F56041</color>
+    <color name="home4">#99DF21</color>
+
+</resources>
