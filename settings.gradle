@@ -10,7 +10,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        //阿里云jcenter仓库 包含pickerview
+        maven {url 'https://maven.aliyun.com/repository/jcenter'}
+        maven {
+            url 'https://jitpack.io'
+        }
     }
 }
 rootProject.name = "ware_house"
