@@ -1,23 +1,15 @@
-package com.xxx.ware_house.utils;
+package com.xxx.ware_house.utils
 
-import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 /**
  *
  */
-public class GsonUtils {
-
-    private GsonUtils() {
-
-    }
-
-    private static Gson getGsonObject() {
-        Gson gson = new GsonBuilder().serializeNulls().create();
-        return gson;
-    }
+object GsonUtils {
+    private val gsonObject: Gson
+        get() = GsonBuilder().serializeNulls().create()
 
     /**
      * 对象转字符串
@@ -25,10 +17,11 @@ public class GsonUtils {
      * @param object
      * @param <T>
      * @return
-     */
-    public static <T extends Object> String ser(T object) {
-        Gson gson = getGsonObject();
-        return gson.toJson(object);
+    </T> */
+    @JvmStatic
+    fun <T : Any?> ser(`object`: T): String {
+        val gson = gsonObject
+        return gson.toJson(`object`)
     }
 
     /**
@@ -38,40 +31,40 @@ public class GsonUtils {
      * @param tClass
      * @param <T>
      * @return
-     */
-    public static <T extends Object> T deser(String object, Class<T> tClass) {
-        Gson gsonObject = getGsonObject();
-        T result = null;
+    </T> */
+    @JvmStatic
+    fun <T : Any?> deser(`object`: String?, tClass: Class<T>?): T? {
+        val gsonObject = gsonObject
+        var result: T? = null
         try {
-            result = gsonObject.fromJson(object, tClass);
-        } catch (Exception e) {
-            result = null;
-            e.printStackTrace();
+            result = gsonObject.fromJson(`object`, tClass)
+        } catch (e: Exception) {
+            result = null
+            e.printStackTrace()
         }
-        return result;
+        return result
     }
 
-    public static <T extends Object> T deserBeQuiet(String object, Class<T> tClass) {
-        Gson gson = getGsonObject();
-        T result;
-        try {
-            result = gson.fromJson(object, tClass);
-        } catch (Exception e) {
-            result = null;
+    fun <T : Any?> deserBeQuiet(`object`: String?, tClass: Class<T>?): T? {
+        val gson = gsonObject
+        val result: T?
+        result = try {
+            gson.fromJson(`object`, tClass)
+        } catch (e: Exception) {
+            null
         }
-        return result;
+        return result
     }
 
-    public static <T> T Json2Result(Class<T> tClass, String s) {
-        T result;
+    fun <T> Json2Result(tClass: Class<T>, s: String?): T? {
+        var result: T?
         try {
-            result = new Gson().fromJson(s, tClass);
-            Log.d(tClass.toString() + "-----Json Mes", s);
-        } catch (Exception e) {
-            result = null;
-            Log.e(tClass.toString() + "-----Json Error", s);
+            result = Gson().fromJson(s, tClass)
+            Log.d("$tClass-----Json Mes", s!!)
+        } catch (e: Exception) {
+            result = null
+            Log.e("$tClass-----Json Error", s!!)
         }
-        return result;
+        return result
     }
-
 }

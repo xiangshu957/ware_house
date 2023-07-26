@@ -68,9 +68,11 @@ class BasePresenter<V : BaseView?> {
     fun getView(): V? {
         return mvpView
     }
+    //100026   81
 
-    fun apiService(): RetrofitApiService {
-        return RetrofitManager.getInstance().getRetrofitApiService()
+    fun apiService() {
+        return
+        RetrofitManager.instance?.getRetrofitApiService()
     }
 
     fun <T> observe(observable: Observable<T>): Observable<T> {

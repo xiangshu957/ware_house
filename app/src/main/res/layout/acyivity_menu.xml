@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/red">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                     android:text="收货扫描"
                     android:gravity="center"
                     android:textSize="@dimen/sp_18"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
@@ -43,7 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/colorPrimary">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -51,7 +53,7 @@
                     android:text="上架扫描"
                     android:gravity="center"
                     android:textSize="@dimen/sp_18"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
@@ -63,7 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/colorAccent">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -71,7 +74,7 @@
                     android:text="库存查询"
                     android:gravity="center"
                     android:textSize="@dimen/sp_18"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
@@ -91,7 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/colorPrimaryDark">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -99,7 +103,7 @@
                     android:text="收货校验"
                     android:gravity="center"
                     android:textSize="@dimen/sp_18"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 
@@ -111,7 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/red">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -119,7 +124,7 @@
                     android:text="拣货扫描"
                     android:gravity="center"
                     android:textSize="@dimen/sp_18"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
 

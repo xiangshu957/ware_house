@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.xxx.ware_house.R
-import com.xxx.ware_house.ReceiveScanActivity
+import com.xxx.ware_house.receive.ReceiveScanActivity
 import com.xxx.ware_house.base.BaseActivity
 
 /**
@@ -65,11 +65,4 @@ class MenuActivity : BaseActivity() {
 
     }
 
-    override fun registerReceiver() {
-
-    }
-
-    override fun unRegisterReceiver() {
-
-    }
 }

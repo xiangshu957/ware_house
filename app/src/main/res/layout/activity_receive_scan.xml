@@ -83,6 +83,14 @@
                 tools:ignore="HardcodedText"
                 android:layout_marginStart="@dimen/dp_30"/>
 
+            <RadioButton
+                android:id="@+id/rb_input"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="手动输入"
+                tools:ignore="HardcodedText"
+                android:layout_marginStart="@dimen/dp_30"/>
+
         </RadioGroup>
 
         <LinearLayout
