@@ -24,6 +24,7 @@
         </activity>
         <activity android:name="com.xxx.ware_house.cliennt.ClientActivity" />
         <activity android:name="com.xxx.ware_house.menu.MenuActivity" />
+        <activity android:name="com.xxx.ware_house.ReceiveScanActivity" />
     </application>
 
 </manifest>

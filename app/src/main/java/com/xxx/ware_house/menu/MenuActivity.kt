@@ -1,9 +1,11 @@
 package com.xxx.ware_house.menu
 
+import android.content.Intent
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.xxx.ware_house.R
+import com.xxx.ware_house.ReceiveScanActivity
 import com.xxx.ware_house.base.BaseActivity
 
 /**
@@ -34,7 +36,8 @@ class MenuActivity : BaseActivity() {
 
         //收货扫描
         mLlReceiveScan.setOnClickListener {
-
+            val intent = Intent(this, ReceiveScanActivity::class.java)
+            startActivity(intent)
         }
 
         //收货校验

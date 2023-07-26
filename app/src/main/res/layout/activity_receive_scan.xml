@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/dp_8">
+
+        <!-- 客户名称 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="客户名称"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                tools:ignore="HardcodedText" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/acs_client"
+                android:layout_marginStart="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <!-- 入库单号 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="入库单号"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                tools:ignore="HardcodedText" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/acs_odd_code"
+                android:layout_marginStart="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_scan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rb_detail_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="明细扫描"
+                tools:ignore="HardcodedText"
+                android:layout_marginEnd="@dimen/dp_30"/>
+
+            <RadioButton
+                android:id="@+id/rb_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="混扫"
+                tools:ignore="HardcodedText"
+                android:layout_marginStart="@dimen/dp_30"/>
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_8"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:text="货物编码"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="数量"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="体积"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:text="批号"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_good_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>
