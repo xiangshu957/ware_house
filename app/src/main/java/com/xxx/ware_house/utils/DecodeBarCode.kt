@@ -15,12 +15,12 @@ object DecodeBarCode {
             return barCodeInfo
         }
         if (barCodeInfo.barCode?.startsWith("01990") == true && (barCodeInfo.barCode?.length
-                ?: 0) > 40
+                ?: 0) > 42
         ) {//奥地利
 
-            barCodeInfo.weight = barCodeInfo.barCode?.substring(23, 25).plus(".")
-                .plus(barCodeInfo.barCode?.substring(25, 27))
-            barCodeInfo.produceDate = barCodeInfo.barCode?.substring(32, 40)
+            barCodeInfo.weight = barCodeInfo.barCode?.substring(22, 24).plus(".")
+                .plus(barCodeInfo.barCode?.substring(24, 26))
+            barCodeInfo.produceDate = barCodeInfo.barCode?.substring(34, 42)
 
         } else if (barCodeInfo.barCode?.startsWith("01993") == true && (barCodeInfo.barCode?.length
                 ?: 0) > 34
@@ -37,9 +37,9 @@ object DecodeBarCode {
                 ?: 0) > 40
         ) {//美国
 
-            barCodeInfo.weight = barCodeInfo.barCode?.substring(22, 24).plus(".")
-                .plus(barCodeInfo.barCode?.substring(24, 26))
-
+            barCodeInfo.weight = barCodeInfo.barCode?.substring(23, 25).plus(".")
+                .plus(barCodeInfo.barCode?.substring(25, 27))
+            barCodeInfo.weight = String.format("%.2f", barCodeInfo.weight?.toDouble()?.times(0.454))
             barCodeInfo.produceDate = barCodeInfo.barCode?.substring(28, 34)
 
         } else if (barCodeInfo.barCode?.startsWith("61134") == true && (barCodeInfo.barCode?.length
@@ -53,15 +53,15 @@ object DecodeBarCode {
         } else if (barCodeInfo.barCode?.startsWith("00184") == true && (barCodeInfo.barCode?.length
                 ?: 0) > 55
         ) { //西班牙
-            barCodeInfo.weight = barCodeInfo.barCode?.substring(35, 37).plus(".")
-                .plus(barCodeInfo.barCode?.substring(37, 39))
+            barCodeInfo.weight = barCodeInfo.barCode?.substring(34, 36).plus(".")
+                .plus(barCodeInfo.barCode?.substring(36, 38))
             barCodeInfo.produceDate = barCodeInfo.barCode?.substring(49, 55)
         } else if (barCodeInfo.barCode?.startsWith("02984") == true && (barCodeInfo.barCode?.length
                 ?: 0) > 25
         ) { //西班牙
             barCodeInfo.weight = barCodeInfo.barCode?.substring(29, 31).plus(".")
                 .plus(barCodeInfo.barCode?.substring(31, 33))
-            barCodeInfo.produceDate = barCodeInfo.barCode?.substring(19, 25)
+            barCodeInfo.expirationTime = barCodeInfo.barCode?.substring(19, 25)
         }
         return barCodeInfo
     }

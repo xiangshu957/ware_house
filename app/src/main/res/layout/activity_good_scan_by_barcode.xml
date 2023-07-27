@@ -65,6 +65,44 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30">
+
+            <TextView
+                android:id="@+id/tv_box_code"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:text="箱码"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tv_good_weight"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="数量"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tv_good_vol"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

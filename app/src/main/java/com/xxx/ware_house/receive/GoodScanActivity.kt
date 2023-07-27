@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.google.gson.Gson
 import com.xxx.ware_house.R
 import com.xxx.ware_house.base.BaseActivity
 import com.xxx.ware_house.common.SystemCommon
@@ -23,6 +24,8 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MediaType
+import okhttp3.RequestBody
 
 /**
  * @Author: ZhangRuixiang
@@ -66,7 +69,10 @@ class GoodScanActivity : BaseActivity() {
             hashMapOf<String, String>().apply {
                 put("Authorization", SpUtil.get(SystemCommon.token, "") as String)
             },
-            myScanGoodAdapter.data
+            RequestBody.create(
+                MediaType.parse("application/json;charset=UTF-8"),
+                GsonUtils.ser(myScanGoodAdapter.data)
+            )
         )
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -112,9 +118,9 @@ class GoodScanActivity : BaseActivity() {
 
         oddCode = intent.getStringExtra("oddCode")
 
-        mTvClient.setText(client?.customerName)
-        mTvOddCode.setText(oddCode)
-        mTvGoodCode.setText(good?.goodsID.toString())
+        mTvClient.text = client?.customerName
+        mTvOddCode.text = oddCode
+        mTvGoodCode.text = good?.goodsID.toString()
 
         mRvGoodList.apply {
             layoutManager = LinearLayoutManager(this@GoodScanActivity)
@@ -131,7 +137,7 @@ class GoodScanActivity : BaseActivity() {
             override fun convert(helper: BaseViewHolder?, item: Detail?) {
                 helper?.getView<TextView>(R.id.tv_box_code)?.text = item?.boxCode
                 helper?.getView<TextView>(R.id.tv_good_weight)?.text = item?.weightDetail.toString()
-                helper?.getView<TextView>(R.id.tv_good_vol)?.text = item?.volumeDetail.toString()
+                helper?.getView<TextView>(R.id.tv_good_vol)?.text = item?.propertyInfo2 ?: item?.propertyInfo3
             }
 
         }
@@ -154,6 +160,7 @@ class GoodScanActivity : BaseActivity() {
         detail.apply {
             weightDetail = deCodeInfo.weight?.toDouble() ?: 0.0
             propertyInfo2 = deCodeInfo.produceDate ?: ""
+            propertyInfo3 = deCodeInfo.expirationTime ?: ""
             boxCode = deCodeInfo.barCode
         }
         myScanGoodAdapter.addData(0, detail)

@@ -120,6 +120,7 @@ class ReceiveScanActivity : BaseActivity() {
 
                             if (t.code == 1) {
                                 t.data.lists?.add(0, "请选择入库单号")
+                                myOddCodeAdapter?.addAll(arrayListOf())
                                 myOddCodeAdapter?.addAll(t.data.lists ?: arrayListOf())
                                 myOddCodeAdapter?.notifyDataSetChanged()
                             } else {

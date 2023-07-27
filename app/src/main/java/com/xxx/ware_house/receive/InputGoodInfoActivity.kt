@@ -2,9 +2,8 @@ package com.xxx.ware_house.receive
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -26,13 +25,15 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MediaType
+import okhttp3.RequestBody
 
 /**
  * @Author: ZhangRuixiang
  * Date: 2023/7/27
  * DES:
  */
-class InputGoodInfoActivity() : BaseActivity(), Parcelable {
+class InputGoodInfoActivity() : BaseActivity() {
 
     var client: Lists? = null
     var good: Detail? = null
@@ -70,7 +71,10 @@ class InputGoodInfoActivity() : BaseActivity(), Parcelable {
             hashMapOf<String, String>().apply {
                 put("Authorization", SpUtil.get(SystemCommon.token, "") as String)
             },
-            myScanGoodAdapter.data
+            RequestBody.create(
+                MediaType.parse("application/json;charset=UTF-8"),
+                GsonUtils.ser(myScanGoodAdapter.data)
+            )
         )
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -101,9 +105,38 @@ class InputGoodInfoActivity() : BaseActivity(), Parcelable {
         mTvAdd.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val inflate = LayoutInflater.from(this).inflate(R.layout.dialog_input, null, false)
+            val etNum = inflate.findViewById<EditText>(R.id.et_num)
+            val etWeight = inflate.findViewById<EditText>(R.id.et_weight)
+            val etVol = inflate.findViewById<EditText>(R.id.et_vol)
+            val etProduceTime = inflate.findViewById<EditText>(R.id.et_produce_time)
+            val etExpirationTime = inflate.findViewById<EditText>(R.id.et_expiration_time)
             builder.setView(inflate)
             val create = builder.create()
             inflate.findViewById<TextView>(R.id.tv_confirm).setOnClickListener {
+                if (etNum.text.toString() == "") {
+                    return@setOnClickListener
+                }
+                if (etWeight.text.toString() == "") {
+                    return@setOnClickListener
+                }
+                if (etVol.text.toString() == "") {
+                    return@setOnClickListener
+                }
+                if (etProduceTime.text.toString() == "") {
+                    return@setOnClickListener
+                }
+                if (etExpirationTime.text.toString() == "") {
+                    return@setOnClickListener
+                }
+                scan(
+                    BarCodeInfo(
+                        num = etNum.text.toString(),
+                        weight = etWeight.text.toString(),
+                        vol = etVol.text.toString(),
+                        produceDate = etProduceTime.text.toString(),
+                        expirationTime = etExpirationTime.toString()
+                    )
+                )
                 create.dismiss()
             }
             inflate.findViewById<TextView>(R.id.tv_cancel).setOnClickListener {
@@ -130,9 +163,9 @@ class InputGoodInfoActivity() : BaseActivity(), Parcelable {
 
         oddCode = intent.getStringExtra("oddCode")
 
-        mTvClient.setText(client?.customerName)
-        mTvOddCode.setText(oddCode)
-        mTvGoodCode.setText(good?.goodsID.toString())
+        mTvClient.text = client?.customerName
+        mTvOddCode.text = oddCode
+        mTvGoodCode.text = good?.goodsID.toString()
 
         mRvGoodList.apply {
             layoutManager = LinearLayoutManager(this@InputGoodInfoActivity)
@@ -144,19 +177,16 @@ class InputGoodInfoActivity() : BaseActivity(), Parcelable {
     }
 
     private val myScanGoodAdapter =
-        object : BaseQuickAdapter<Detail, BaseViewHolder>(R.layout.item_scan_good_info) {
+        object : BaseQuickAdapter<Detail, BaseViewHolder>(R.layout.item_input_good_info) {
 
             override fun convert(helper: BaseViewHolder?, item: Detail?) {
-                helper?.getView<TextView>(R.id.tv_box_code)?.text = item?.boxCode
-                helper?.getView<TextView>(R.id.tv_good_weight)?.text = item?.weightDetail.toString()
-                helper?.getView<TextView>(R.id.tv_good_vol)?.text = item?.volumeDetail.toString()
+                helper?.getView<TextView>(R.id.tv_num)?.text = item?.quantity1.toString()
+                helper?.getView<TextView>(R.id.tv_weight)?.text = item?.weightDetail.toString()
+                helper?.getView<TextView>(R.id.tv_vol)?.text = item?.volumeDetail.toString()
             }
 
         }
 
-    constructor(parcel: Parcel) : this() {
-        oddCode = parcel.readString()
-    }
 
     @SuppressLint("SetTextI18n")
     override fun scan(barCodeInfo: BarCodeInfo) {
@@ -169,7 +199,7 @@ class InputGoodInfoActivity() : BaseActivity(), Parcelable {
             volumeDetail = barCodeInfo.vol?.toDouble() ?: 0.0
             propertyInfo2 = barCodeInfo.produceDate ?: ""
             boxCode = barCodeInfo.barCode
-            propertyInfo3 = barCodeInfo.expirationTime
+            propertyInfo3 = barCodeInfo.expirationTime ?: " "
         }
         myScanGoodAdapter.addData(0, detail)
         var weightSum = 0.0
@@ -178,24 +208,7 @@ class InputGoodInfoActivity() : BaseActivity(), Parcelable {
             weightSum += it.weightDetail ?: 0.0
             volSum += it.volumeDetail ?: 0.0
         }
-        mTvNum.setText("箱数：${myScanGoodAdapter.data.size}  重量：${weightSum}  体积：${volSum}")
+        mTvNum.text = "箱数：${myScanGoodAdapter.data.size}  重量：${weightSum}  体积：${volSum}"
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(oddCode)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<InputGoodInfoActivity> {
-        override fun createFromParcel(parcel: Parcel): InputGoodInfoActivity {
-            return InputGoodInfoActivity(parcel)
-        }
-
-        override fun newArray(size: Int): Array<InputGoodInfoActivity?> {
-            return arrayOfNulls(size)
-        }
-    }
 }

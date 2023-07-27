@@ -16,11 +16,14 @@ import com.xxx.ware_house.data.BaseResp
 import com.xxx.ware_house.data.Detail
 import com.xxx.ware_house.data.Lists
 import com.xxx.ware_house.net.RetrofitManager
+import com.xxx.ware_house.utils.GsonUtils
 import com.xxx.ware_house.utils.SpUtil
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MediaType
+import okhttp3.RequestBody
 
 /**
  * @Author: ZhangRuixiang
@@ -86,7 +89,10 @@ class GoodScanByBarCodeActivity : BaseActivity() {
             hashMapOf<String, String>().apply {
                 put("Authorization", SpUtil.get(SystemCommon.token, "") as String)
             },
-            myScanGoodAdapter.data
+            RequestBody.create(
+                MediaType.parse("application/json;charset=UTF-8"),
+                GsonUtils.ser(myScanGoodAdapter.data)
+            )
         )
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
@@ -125,8 +131,8 @@ class GoodScanByBarCodeActivity : BaseActivity() {
 
             override fun convert(helper: BaseViewHolder?, item: Detail?) {
                 helper?.getView<TextView>(R.id.tv_box_code)?.text = item?.boxCode
-                helper?.getView<TextView>(R.id.tv_good_weight)?.text = item?.weightDetail.toString()
-                helper?.getView<TextView>(R.id.tv_good_vol)?.text = item?.volumeDetail.toString()
+                helper?.getView<TextView>(R.id.tv_good_weight)?.text = "1"
+//                helper?.getView<TextView>(R.id.tv_good_vol)?.text = "-"
             }
 
         }

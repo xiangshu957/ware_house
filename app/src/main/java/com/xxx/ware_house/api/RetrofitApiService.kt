@@ -3,7 +3,6 @@ package com.xxx.ware_house.api
 import com.xxx.ware_house.data.BaseResp
 import com.xxx.ware_house.data.CustomResp
 import com.xxx.ware_house.data.CustomerReq
-import com.xxx.ware_house.data.Detail
 import com.xxx.ware_house.data.GoodsDetailResp
 import com.xxx.ware_house.data.LoginReq
 import com.xxx.ware_house.data.OddCodeReq
@@ -67,7 +66,7 @@ interface RetrofitApiService {
      * 保存
      */
     @POST("http://api.shiquan56.com:8093/api/InWarehouse/Insert_ReceiveGoodsDetail_PDA_V1")
-    fun uploadReceive( @HeaderMap headerMap: Map<String, String>,@Body details:List<Detail>):Observable<BaseResp<Any>>
+    fun uploadReceive(@HeaderMap headerMap: Map<String, String>, @Body details: RequestBody):Observable<BaseResp<Any>>
 
     //Retrofit上传文件
     @POST
