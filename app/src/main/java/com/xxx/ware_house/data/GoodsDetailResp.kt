@@ -19,6 +19,8 @@ data class Detail(
     var acceptState: Int? = null,
     var clientID: Int? = null,
     var ediField: String? = null,
+    var goodsCode: String? = null,
+    var goodsName: String? = null,
     var goodsID: Int? = null,
     var goodsSkuID: Any? = null,
     var goodsStatus: Int? = null,

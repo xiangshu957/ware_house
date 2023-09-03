@@ -17,6 +17,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.xxx.ware_house.R
 import com.xxx.ware_house.base.BaseActivity
 import com.xxx.ware_house.common.SystemCommon
+import com.xxx.ware_house.data.BarCodeInfo
 import com.xxx.ware_house.data.BaseResp
 import com.xxx.ware_house.data.CustomResp
 import com.xxx.ware_house.data.CustomerReq
@@ -273,13 +274,21 @@ class ReceiveScanActivity : BaseActivity() {
 
             override fun convert(helper: BaseViewHolder?, item: Detail?) {
 
-                helper?.getView<TextView>(R.id.tv_good_code)?.text = item?.goodsID.toString()
+                helper?.getView<TextView>(R.id.tv_good_code)?.text = item?.goodsCode.toString()
+                helper?.getView<TextView>(R.id.tv_good_name)?.text = item?.goodsName.toString()
                 helper?.getView<TextView>(R.id.tv_good_num)?.text = item?.orderQuantity.toString()
-                helper?.getView<TextView>(R.id.tv_good_vol)?.text = item?.volumeDetail.toString()
-                helper?.getView<TextView>(R.id.tv_good_batch)?.text = "-"
+                helper?.getView<TextView>(R.id.tv_good_weight)?.text = item?.weightDetail.toString()
+                helper?.getView<TextView>(R.id.tv_good_batch)?.text = item?.propertyInfo1
 
             }
 
         }
+
+    override fun scan(barCodeInfo: BarCodeInfo) {
+        super.scan(barCodeInfo)
+        myOddCodeAdapter?.add(barCodeInfo.barCode)
+        myOddCodeAdapter?.notifyDataSetChanged()
+        mAcsOddCode.setSelection(myOddCodeAdapter?.getPosition(barCodeInfo.barCode) ?: 0)
+    }
 
 }

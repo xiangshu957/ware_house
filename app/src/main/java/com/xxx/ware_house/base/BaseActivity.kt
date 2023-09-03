@@ -39,8 +39,6 @@ abstract class BaseActivity : RxFragmentActivity(), BaseView {
     private var mScanBroadcastReceiver = object :BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
 
-//            LogUtil.e(Gson().toJson(p1))
-//            String scanData = intent.getStringExtra("scanData").trim();
             val scanData = p1?.getStringExtra("scannerdata")!!.trim { it <= ' ' }.replace("(","").replace(")","")
             scan(BarCodeInfo(barCode = scanData))
         }
@@ -57,6 +55,7 @@ abstract class BaseActivity : RxFragmentActivity(), BaseView {
         intentFilter.addAction(SystemCommon.ACTION)
         intentFilter.addAction("android.intent.category.MAIN")
         intentFilter.priority = Int.MAX_VALUE
+        intentFilter.addCategory("scannerdata")
         registerReceiver(mScanBroadcastReceiver, intentFilter)
      }
 
